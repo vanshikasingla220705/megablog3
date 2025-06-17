@@ -23,12 +23,12 @@ function PostForm({post}) {
             const file=data.image[0]?appwriteService.uploadFile(data.image[0]):null
 
             if(file){
-                appwriteService.deleteFile(post.featuredImage)
+                appwriteService.deleteFile(post.featuredimage)
             }
 
             const dbPost=await appwriteService.updatePost(post.$id,{
                 ...data,
-                featuredImage:file?file.$id:undefined,
+                featuredimage:file?file.$id:undefined,
 
                 
             })
@@ -41,7 +41,7 @@ function PostForm({post}) {
 
             if(file){
                 const fileId=file.$id
-                data.featuredImage=fileId
+                data.featuredimage=fileId
                 const dbPost=await appwriteService.createPost({
                     ...data,
                     userId:userData?.$id,
@@ -107,7 +107,7 @@ function PostForm({post}) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFilePreview(post.featuredimage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

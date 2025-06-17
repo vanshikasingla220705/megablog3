@@ -68,7 +68,7 @@ export class Service{
 
     async getPost(slug){
         try {
-             return await this.databases.deleteDocument(
+             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
@@ -80,6 +80,7 @@ export class Service{
     }
 
     async getPosts(queries=[Query.equal("status","active")]){
+
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
@@ -121,10 +122,11 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(file){
+        console.log("bugg")
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
-            fileId
+            file
         )
     }
 
